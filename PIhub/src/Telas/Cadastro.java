@@ -1,4 +1,10 @@
 package Telas;
+import DAO.Sessao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 public class Cadastro extends javax.swing.JFrame {
 
     public Cadastro() {
@@ -270,12 +276,36 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoVoltarActionPerformed
 
     private void botaoLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLimparActionPerformed
-
+    textNomeJogo.setText("");
+    textPlataforma.setText("");
+    textGenero.setText("");
+    textProgresso.setText("");
+    CheckJogoFav.setSelected(false);
     }//GEN-LAST:event_botaoLimparActionPerformed
 
     private void botaoConfirmadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfirmadoActionPerformed
-    new Menu().setVisible(true);
-    dispose();    
+    String nome = textNomeJogo.getText();
+    String plataforma = textPlataforma.getText();
+    String genero = textGenero.getText();
+    int progresso = Integer.parseInt(textProgresso.getText());
+    boolean favorito = CheckJogoFav.isSelected();
+
+    try (Connection conn = DAO.ConexaoDB.getConexao()) {
+        String sql = "INSERT INTO jogos (nome, plataforma, genero, progresso, favorito) VALUES (?, ?, ?, ?, ?)";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, nome);
+        stmt.setString(2, plataforma);
+        stmt.setString(3, genero);
+        stmt.setInt(4, progresso);
+        stmt.setBoolean(5, favorito);
+
+
+        stmt.executeUpdate();
+        JOptionPane.showMessageDialog(null, "Jogo cadastrado com sucesso!");
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Erro ao cadastrar jogo.");
+    }
     }//GEN-LAST:event_botaoConfirmadoActionPerformed
 
     public static void main(String args[]) {

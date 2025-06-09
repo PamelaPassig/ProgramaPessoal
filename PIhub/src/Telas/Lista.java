@@ -1,5 +1,11 @@
-
 package Telas;
+import DAO.Sessao;
+import java.sql.ResultSet;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class Lista extends javax.swing.JFrame {
 
@@ -155,11 +161,59 @@ public class Lista extends javax.swing.JFrame {
     }//GEN-LAST:event_textPesquisaActionPerformed
 
     private void botaoPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPesquisarActionPerformed
-        
-    }//GEN-LAST:event_botaoPesquisarActionPerformed
+         String titulo = textPesquisa.getText();
+    DefaultTableModel model = (DefaultTableModel) tableLista.getModel();
+    model.setRowCount(0);
 
+    try (Connection conn = DAO.ConexaoDB.getConexao()) {
+        String sql = "SELECT * FROM jogos WHERE nome LIKE ?";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, "%" + titulo + "%");
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            boolean favorito = rs.getBoolean("Favorito");
+            String favoritoTexto = favorito ? "Sim" : "Não";
+
+            model.addRow(new Object[]{
+                rs.getInt("ID"),
+                rs.getString("Nome"),
+                rs.getString("Plataforma"),
+                rs.getString("Genero"),
+                rs.getString("Progresso"),
+                favoritoTexto
+            });
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Erro ao buscar dados.");
+    }
+    }//GEN-LAST:event_botaoPesquisarActionPerformed
+    private void carregarTabela() {
+     try (Connection conn = DAO.ConexaoDB.getConexao()) {
+            String sql = "SELECT * FROM jogos";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            
+            DefaultTableModel modelo = (DefaultTableModel) tableLista.getModel();
+            modelo.setRowCount(0);
+            while(rs.next()){
+            int id = rs.getInt("ID");
+            String titulo = rs.getString("Nome");
+            String autor = rs.getString("Plataforma");
+            String genero = rs.getString("Genero");
+            String progresso = rs.getString("Progresso");
+            boolean favorito = rs.getBoolean("favorito");
+            String favoritoTexto = favorito ? "Sim" : "Não";
+            
+            modelo.addRow(new Object[]{id, titulo, autor, genero, progresso, favoritoTexto});
+             }
+        }catch(Exception e){
+            javax.swing.JOptionPane.showMessageDialog(this, "Erro ao carregar dados: " + e.getMessage());
+        }  
+}
     private void botaoTudoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTudoActionPerformed
-        
+    carregarTabela();
     }//GEN-LAST:event_botaoTudoActionPerformed
 
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed

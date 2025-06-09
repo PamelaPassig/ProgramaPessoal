@@ -1,33 +1,38 @@
 package Telas;
+import java.sql.ResultSet;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
 
 public class Perfil extends javax.swing.JFrame {
 
     public Perfil() {
         initComponents();
         setLocationRelativeTo(null);
+        labelUsuarioNome.setText("USUARIO: " + DAO.Sessao.usuarioLogado);
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel8 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
+        labelUsuarioNome = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        txtJgZerado = new javax.swing.JTextField();
-        txtJgAband = new javax.swing.JTextField();
-        txtJgProgress = new javax.swing.JTextField();
-        txtJgFav = new javax.swing.JTextField();
+        labelZerados = new javax.swing.JLabel();
+        labelAbandonado = new javax.swing.JLabel();
+        labelProgresso = new javax.swing.JLabel();
+        labelGenero = new javax.swing.JLabel();
         botaoVoltar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+
+        jLabel8.setText("jLabel8");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -35,24 +40,24 @@ public class Perfil extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(71, 0, 76));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("USUARIO");
+        labelUsuarioNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelUsuarioNome.setForeground(new java.awt.Color(255, 255, 255));
+        labelUsuarioNome.setText("USUARIO");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(183, 183, 183)
-                .addComponent(jLabel7)
+                .addGap(182, 182, 182)
+                .addComponent(labelUsuarioNome)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
-                .addComponent(jLabel7)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelUsuarioNome)
                 .addContainerGap())
         );
 
@@ -104,97 +109,51 @@ public class Perfil extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Jogos zerados:");
+        labelZerados.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelZerados.setForeground(new java.awt.Color(255, 255, 255));
+        labelZerados.setText("Zerados:");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Jogos abandonados:");
+        labelAbandonado.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelAbandonado.setForeground(new java.awt.Color(255, 255, 255));
+        labelAbandonado.setText("Abandonados:");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Jogos em progresso:");
+        labelProgresso.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelProgresso.setForeground(new java.awt.Color(255, 255, 255));
+        labelProgresso.setText("Progresso:");
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Gênero favorito:");
-
-        txtJgZerado.setBackground(new java.awt.Color(216, 193, 208));
-        txtJgZerado.setBorder(null);
-        txtJgZerado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtJgZeradoActionPerformed(evt);
-            }
-        });
-
-        txtJgAband.setBackground(new java.awt.Color(216, 193, 208));
-        txtJgAband.setBorder(null);
-        txtJgAband.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtJgAbandActionPerformed(evt);
-            }
-        });
-
-        txtJgProgress.setBackground(new java.awt.Color(216, 193, 208));
-        txtJgProgress.setBorder(null);
-        txtJgProgress.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtJgProgressActionPerformed(evt);
-            }
-        });
-
-        txtJgFav.setBackground(new java.awt.Color(216, 193, 208));
-        txtJgFav.setBorder(null);
-        txtJgFav.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtJgFavActionPerformed(evt);
-            }
-        });
+        labelGenero.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelGenero.setForeground(new java.awt.Color(255, 255, 255));
+        labelGenero.setText("Gênero mais jogado:");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(82, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(72, 72, 72))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(13, 13, 13)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtJgZerado, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtJgAband, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtJgProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtJgFav, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(labelZerados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelAbandonado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelProgresso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelGenero, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtJgZerado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(labelZerados)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtJgAband, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(labelAbandonado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtJgProgress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(labelProgresso)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtJgFav, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(labelGenero)
                 .addGap(0, 15, Short.MAX_VALUE))
         );
 
@@ -208,6 +167,16 @@ public class Perfil extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(71, 0, 76));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Atualizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -215,12 +184,14 @@ public class Perfil extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(botaoVoltar)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoVoltar))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -235,7 +206,9 @@ public class Perfil extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(botaoVoltar)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botaoVoltar)
+                    .addComponent(jButton1))
                 .addGap(0, 21, Short.MAX_VALUE))
         );
 
@@ -253,26 +226,48 @@ public class Perfil extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtJgZeradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtJgZeradoActionPerformed
-
-    }//GEN-LAST:event_txtJgZeradoActionPerformed
-
-    private void txtJgAbandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtJgAbandActionPerformed
-
-    }//GEN-LAST:event_txtJgAbandActionPerformed
-
-    private void txtJgProgressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtJgProgressActionPerformed
-
-    }//GEN-LAST:event_txtJgProgressActionPerformed
-
-    private void txtJgFavActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtJgFavActionPerformed
-  
-    }//GEN-LAST:event_txtJgFavActionPerformed
-
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
     new Menu().setVisible(true);
     dispose();
     }//GEN-LAST:event_botaoVoltarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         try {
+        Connection conn = DAO.ConexaoDB.getConexao();
+        PreparedStatement stmtZerados = conn.prepareStatement("SELECT COUNT(*) FROM jogos WHERE progresso = 100");
+        ResultSet rsZerados = stmtZerados.executeQuery();
+        if (rsZerados.next()) {
+            int totalZerados = rsZerados.getInt(1);
+            labelZerados.setText("Zerados: " + totalZerados);
+        }
+        PreparedStatement stmtProgresso = conn.prepareStatement("SELECT COUNT(*) FROM jogos WHERE progresso < 100");
+        ResultSet rsProgresso = stmtProgresso.executeQuery();
+        if (rsProgresso.next()) {
+            int totalProgresso = rsProgresso.getInt(1);
+            labelProgresso.setText("Progresso: " + totalProgresso);
+        }
+        PreparedStatement stmtGenero = conn.prepareStatement(
+            "SELECT genero, COUNT(*) AS total FROM jogos GROUP BY genero ORDER BY total DESC LIMIT 1"
+        );
+        ResultSet rsGenero = stmtGenero.executeQuery();
+        if (rsGenero.next()) {
+            String generoMaisFrequente = rsGenero.getString("genero");
+            int total = rsGenero.getInt("total");
+            labelGenero.setText("Gênero mais jogado: " + generoMaisFrequente + " (" + total + ")");
+        }
+        labelAbandonado.setText("Abandonados: em breve");
+        rsZerados.close();
+        rsProgresso.close();
+        rsGenero.close();
+        stmtZerados.close();
+        stmtProgresso.close();
+        stmtGenero.close();
+        conn.close();
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Erro ao atualizar informações: " + e.getMessage());
+    }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
 
@@ -285,21 +280,19 @@ public class Perfil extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoVoltar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JTextField txtJgAband;
-    private javax.swing.JTextField txtJgFav;
-    private javax.swing.JTextField txtJgProgress;
-    private javax.swing.JTextField txtJgZerado;
+    private javax.swing.JLabel labelAbandonado;
+    private javax.swing.JLabel labelGenero;
+    private javax.swing.JLabel labelProgresso;
+    private javax.swing.JLabel labelUsuarioNome;
+    private javax.swing.JLabel labelZerados;
     // End of variables declaration//GEN-END:variables
 }

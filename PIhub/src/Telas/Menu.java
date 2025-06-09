@@ -4,6 +4,7 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
         setLocationRelativeTo(null);
+        jLabel2.setText(DAO.Sessao.usuarioLogado);
     }
 
     @SuppressWarnings("unchecked")

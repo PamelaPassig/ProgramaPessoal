@@ -1,5 +1,10 @@
 package Telas;
-
+import DAO.Sessao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import java.sql.ResultSet;
 
 public class Login extends javax.swing.JFrame {
 
@@ -169,8 +174,32 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_textSenhaActionPerformed
 
     private void botaoEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEntrarActionPerformed
-    new Menu().setVisible(true);
-    dispose();
+    String usuario = textUsuario.getText();
+    String senha = new String(textSenha.getPassword());
+
+    try (Connection conn = DAO.ConexaoDB.getConexao()) {
+        String sql = "SELECT * FROM usuarios WHERE usuario = ? AND senha = ?";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, usuario);
+        stmt.setString(2, senha);
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            Sessao.idUsuario = rs.getInt("id");
+            Sessao.usuarioLogado = rs.getString("usuario");
+            Sessao.nomeUsuario = rs.getString("nome");
+            Sessao.genero = rs.getString("genero");
+            Sessao.idade = rs.getInt("idade");
+
+            new Menu().setVisible(true);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Erro na conexão com o banco");
+    } 
     }//GEN-LAST:event_botaoEntrarActionPerformed
 
     private void botaoRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRegistrarActionPerformed
